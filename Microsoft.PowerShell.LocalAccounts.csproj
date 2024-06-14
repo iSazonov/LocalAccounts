@@ -1,0 +1,92 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>PowerShell's Microsoft.PowerShell.LocalAccounts project</Description>
+    <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Microsoft.PowerShell.LocalAccounts</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management.Automation" Version="7.4.2" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="8.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Product>PowerShell</Product>
+    <Company>Microsoft Corporation</Company>
+    <Copyright>(c) Microsoft Corporation. All rights reserved.</Copyright>
+
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>11.0</LangVersion>
+
+    <CoreCompileDependsOn>PrepareResources;$(CompileDependsOn)</CoreCompileDependsOn>
+
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <HighEntropyVA>true</HighEntropyVA>
+
+    <PSCoreFileVersion>7.4.0.0</PSCoreFileVersion>
+    <Version>$(PSCoreFileVersion)</Version>
+    <InformationalVersion>$(PSCoreFileVersion)</InformationalVersion>
+    <ProductVersion>$(PSCoreFileVersion)</ProductVersion>
+    <PackageVersion>$(PSCoreFileVersion)</PackageVersion>
+
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\*.resx">
+      <Generator>MSBuild:Compile</Generator>
+      <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+      <StronglyTypedNamespace>$(MSBuildProjectName)</StronglyTypedNamespace>
+      <StronglyTypedClassName>Strings</StronglyTypedClassName>
+      <ManifestResourceName>%(Filename)</ManifestResourceName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);CORECLR</DefineConstants>
+    <IsWindows Condition="'$(IsWindows)' =='true' or ( '$(IsWindows)' == '' and '$(OS)' == 'Windows_NT')">true</IsWindows>
+  </PropertyGroup>
+
+  <!-- Define non-windows, all configuration properties -->
+  <PropertyGroup Condition=" '$(IsWindows)' != 'true' ">
+    <DefineConstants>$(DefineConstants);UNIX</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Define all OS, debug configuration properties -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <!-- Define all OS, release configuration properties -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <!-- Define windows, release configuration properties -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(IsWindows)' == 'true' ">
+    <Optimize>true</Optimize>
+    <!-- This is required to be full for compliance tools !-->
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <!-- Define non-windows, release configuration properties -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(IsWindows)' != 'true' ">
+    <!-- Set-Date fails with optimize enabled in NonWindowsSetDate
+         Debugging the issues resolves the problem
+     -->
+    <Optimize>false</Optimize>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <!-- Define all OS, CodeCoverage configuration properties -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'CodeCoverage' ">
+    <!-- This is required to be portable to Coverlet tool !-->
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+</Project>
