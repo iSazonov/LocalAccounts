@@ -52,7 +52,7 @@ indent_style = tab
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true
 
-file_header_template = Copyright (c) Microsoft Corporation.\nLicensed under the MIT License.
+file_header_template = Licensed under the MIT License.
 
 # Modifier preferences
 csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
