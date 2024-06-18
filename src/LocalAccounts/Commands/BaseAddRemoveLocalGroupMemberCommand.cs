@@ -8,9 +8,7 @@ using System.Management.Automation.SecurityAccountsManager;
 using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
 
-using Microsoft.PowerShell.LocalAccounts;
-
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The following is the base class for Add-LocalGroupMember and Remove-LocalGroupMember cmdlets.

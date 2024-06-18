@@ -7,11 +7,9 @@ using System.DirectoryServices.AccountManagement;
 using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
-
-using Microsoft.PowerShell.LocalAccounts;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Rename-LocalUser cmdlet renames a local user account in the Security

@@ -4,7 +4,7 @@ using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Management.Automation.SecurityAccountsManager.Native;
 using System.Security.Principal;
 
-using Microsoft.PowerShell.Commands;
+using LocalAccounts;
 
 [assembly:System.Runtime.Versioning.SupportedOSPlatform("windows")]
 

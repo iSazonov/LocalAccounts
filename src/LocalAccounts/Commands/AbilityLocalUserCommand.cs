@@ -7,9 +7,7 @@ using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 
-using Microsoft.PowerShell.LocalAccounts;
-
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// It is base class for Enable-LocalUser and Disable-LocalUser cmdlets.

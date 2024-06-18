@@ -2,7 +2,7 @@
 
 using System.Security.Principal;
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// Defines the source of a Principal.

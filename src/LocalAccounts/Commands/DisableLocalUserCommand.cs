@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Disable-LocalUser cmdlet disables local user accounts. When a user

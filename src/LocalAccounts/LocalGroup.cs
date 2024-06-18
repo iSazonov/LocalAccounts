@@ -1,10 +1,6 @@
 // Licensed under the MIT License.
 
-using System;
-
-using Microsoft.PowerShell.LocalAccounts;
-
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// Describes a Local Group.

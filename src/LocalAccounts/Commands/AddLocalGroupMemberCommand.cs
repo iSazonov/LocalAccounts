@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Add-LocalGroupMember cmdlet adds one or more users or groups to a local group.

@@ -6,10 +6,9 @@ using System.DirectoryServices.AccountManagement;
 using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
-using Microsoft.PowerShell.LocalAccounts;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Set-LocalGroup cmdlet modifies the properties of a local security group

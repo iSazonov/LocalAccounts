@@ -5,11 +5,9 @@ using System;
 using System.DirectoryServices.AccountManagement;
 using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
-
-using Microsoft.PowerShell.LocalAccounts;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The New-LocalGroup Cmdlet can be used to create a new local security group

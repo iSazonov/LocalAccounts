@@ -6,7 +6,7 @@ using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Security.Principal;
 
-using Microsoft.PowerShell.Commands;
+using LocalAccounts;
 
 namespace System.Management.Automation.SecurityAccountsManager;
 

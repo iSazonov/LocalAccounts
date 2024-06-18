@@ -4,8 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Principal;
 
-using Microsoft.PowerShell.Commands;
-using Microsoft.PowerShell.LocalAccounts;
+using LocalAccounts;
 
 namespace System.Management.Automation.SecurityAccountsManager.Extensions
 {

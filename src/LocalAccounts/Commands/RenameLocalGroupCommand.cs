@@ -7,11 +7,9 @@ using System.DirectoryServices.AccountManagement;
 using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
-
-using Microsoft.PowerShell.LocalAccounts;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Rename-LocalGroup cmdlet renames a local security group in the Security

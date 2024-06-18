@@ -9,7 +9,7 @@ using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Get-LocalGroup cmdlet gets local groups from the Windows Security

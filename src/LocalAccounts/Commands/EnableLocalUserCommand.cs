@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Enable-LocalUser cmdlet enables local user accounts. When a user account

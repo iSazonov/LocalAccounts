@@ -5,9 +5,7 @@ using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Runtime.Serialization;
 
-using Microsoft.PowerShell.LocalAccounts;
-
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// Base class for cmdlet-specific exceptions.

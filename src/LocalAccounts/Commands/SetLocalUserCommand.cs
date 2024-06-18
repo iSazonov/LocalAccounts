@@ -7,11 +7,9 @@ using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
-
-using Microsoft.PowerShell.LocalAccounts;
 #endregion
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Set-LocalUser cmdlet changes the properties of a user account in the

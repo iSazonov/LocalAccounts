@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// The Remove-LocalGroupMember cmdlet removes one or more members (users or groups) from a local security group.

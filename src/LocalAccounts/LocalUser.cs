@@ -2,9 +2,7 @@
 
 using System;
 
-using Microsoft.PowerShell.LocalAccounts;
-
-namespace Microsoft.PowerShell.Commands
+namespace LocalAccounts
 {
     /// <summary>
     /// Describes a Local User.
