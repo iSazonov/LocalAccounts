@@ -2,9 +2,9 @@
 <Configuration>
     <ViewDefinitions>
         <View>
-            <Name>Microsoft.PowerShell.Commands.LocalUser</Name>
+            <Name>LocalAccounts.Commands.LocalUser</Name>
             <ViewSelectedBy>
-                <TypeName>Microsoft.PowerShell.Commands.LocalUser</TypeName>
+                <TypeName>LocalAccounts.Commands.LocalUser</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
@@ -33,9 +33,9 @@
             </TableControl>
         </View>
         <View>
-            <Name>Microsoft.PowerShell.Commands.LocalGroup</Name>
+            <Name>LocalAccounts.Commands.LocalGroup</Name>
             <ViewSelectedBy>
-                <TypeName>Microsoft.PowerShell.Commands.LocalGroup</TypeName>
+                <TypeName>LocalAccounts.Commands.LocalGroup</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
@@ -59,9 +59,9 @@
             </TableControl>
         </View>
         <View>
-            <Name>Microsoft.PowerShell.Commands.LocalPrincipal</Name>
+            <Name>LocalAccounts.Commands.LocalPrincipal</Name>
             <ViewSelectedBy>
-                <TypeName>Microsoft.PowerShell.Commands.LocalPrincipal</TypeName>
+                <TypeName>LocalAccounts.Commands.LocalPrincipal</TypeName>
             </ViewSelectedBy>
             <TableControl>
                 <TableHeaders>
