@@ -1,14 +1,13 @@
 // Licensed under the MIT License.
 
-using System.Management.Automation.SecurityAccountsManager.Extensions;
-using System.Management.Automation.SecurityAccountsManager.Native;
+using System;
 using System.Security.Principal;
 
-using LocalAccounts;
+using LocalAccounts.Native;
 
 [assembly:System.Runtime.Versioning.SupportedOSPlatform("windows")]
 
-namespace System.Management.Automation.SecurityAccountsManager
+namespace LocalAccounts.Extensions
 {
     /// <summary>
     /// Provides methods for manipulating local Users and Groups.

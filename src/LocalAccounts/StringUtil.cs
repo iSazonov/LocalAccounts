@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-namespace System.Management.Automation.SecurityAccountsManager
+namespace LocalAccounts.Helpers
 {
     /// <summary>
     /// Contains utility functions for formatting localizable strings.

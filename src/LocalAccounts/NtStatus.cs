@@ -1,6 +1,8 @@
 // Licensed under the MIT License.
 
-namespace System.Management.Automation.SecurityAccountsManager.Native
+using System;
+
+namespace LocalAccounts.Native
 {
     internal static class NtStatus
     {

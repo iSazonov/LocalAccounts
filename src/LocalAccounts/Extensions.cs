@@ -1,12 +1,13 @@
 // Licensed under the MIT License.
 
+using System;
+using System.Collections.Generic;
+using System.Management.Automation;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Principal;
 
-using LocalAccounts;
-
-namespace System.Management.Automation.SecurityAccountsManager.Extensions
+namespace LocalAccounts.Extensions
 {
     /// <summary>
     /// Provides extension methods for the Cmdlet class.
@@ -81,7 +82,7 @@ namespace System.Management.Automation.SecurityAccountsManager.Extensions
             InvocationInfo invocation = cmdlet.MyInvocation;
             if (invocation is not null)
             {
-                Collections.Generic.Dictionary<string, object> parameters = invocation.BoundParameters;
+                Dictionary<string, object> parameters = invocation.BoundParameters;
 
                 if (parameters is not null)
                 {

@@ -4,8 +4,9 @@ using System;
 using System.Diagnostics;
 using System.DirectoryServices.AccountManagement;
 using System.Management.Automation;
-using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
+
+using LocalAccounts.Helpers;
 
 namespace LocalAccounts.Commands
 {

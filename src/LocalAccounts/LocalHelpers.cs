@@ -1,14 +1,15 @@
 // Licensed under the MIT License.
 
+using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Security.Principal;
 
-using LocalAccounts;
+using LocalAccounts.Extensions;
 
-namespace System.Management.Automation.SecurityAccountsManager;
+namespace LocalAccounts.Helpers;
 
 /// <summary>
 /// Contains utility functions for user and group operations.
@@ -19,7 +20,7 @@ internal static class LocalHelpers
     /// Get FQDN computer name.
     /// </summary>
     internal static string GetFullComputerName()
-        => Net.Dns.GetHostEntry(Environment.MachineName).HostName;
+        => System.Net.Dns.GetHostEntry(Environment.MachineName).HostName;
 
     /// <summary>
     /// Get a domain name if the local computer.

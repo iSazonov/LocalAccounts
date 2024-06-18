@@ -1,8 +1,9 @@
 // Licensed under the MIT License.
 
+using System;
 using System.Runtime.InteropServices;
 
-namespace System.Management.Automation.SecurityAccountsManager.Native
+namespace LocalAccounts.Native
 {
     #region Enums
     internal enum LSA_USER_ACCOUNT_TYPE
