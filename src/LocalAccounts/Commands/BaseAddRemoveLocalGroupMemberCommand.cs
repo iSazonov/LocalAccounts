@@ -23,7 +23,7 @@ namespace LocalAccounts.Commands
         /// The following is the definition of the input parameter "Member".
         /// Specifies one or more users or groups to add to this local group. You can
         /// identify users or groups by specifying their names or SIDs, or by passing
-        /// Microsoft.PowerShell.Commands.LocalPrincipal objects.
+        /// LocalAccounts.Commands.LocalPrincipal objects.
         /// </summary>
         [Parameter(Mandatory = true,
                    Position = 1,
