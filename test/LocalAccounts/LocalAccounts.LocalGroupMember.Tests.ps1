@@ -1,8 +1,4 @@
-# Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-
-# Module removed due to #4272
-# disabling tests
 
 function IsWin10OrHigher
 {

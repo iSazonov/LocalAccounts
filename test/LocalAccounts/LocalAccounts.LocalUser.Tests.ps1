@@ -1,8 +1,4 @@
-# Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-
-# Module removed due to #4272
-# disabling tests
 
 Set-Variable dateInFuture -Option Constant -Value "12/12/2036 09:00"
 Set-Variable dateInPast -Option Constant -Value "12/12/2010 09:00"
