@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>PowerShell's Microsoft.PowerShell.LocalAccounts project</Description>
-    <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
+    <Description>PowerShell LocalAccounts module for Windows</Description>
     <Nullable>enable</Nullable>
-    <AssemblyName>Microsoft.PowerShell.LocalAccounts</AssemblyName>
+    <AssemblyName>LocalAccounts</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +12,8 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <Product>PowerShell</Product>
-    <Company>Microsoft Corporation</Company>
-    <Copyright>(c) Microsoft Corporation. All rights reserved.</Copyright>
+    <Product>PowerShell LocalAccounts</Product>
+    <Copyright>(c) I.E.Sazonov. All rights reserved.</Copyright>
 
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>11.0</LangVersion>

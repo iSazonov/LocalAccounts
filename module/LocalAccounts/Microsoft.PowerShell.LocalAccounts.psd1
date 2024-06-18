@@ -1,10 +1,9 @@
 @{
-RootModule = 'Microsoft.Powershell.LocalAccounts'
+RootModule = 'LocalAccounts'
 ModuleVersion = '7.0.0.0'
-GUID = '8e362604-2c0b-448f-a414-a6a690a644e2'
-Author = 'Microsoft Corporation'
-CompanyName = 'Microsoft Corporation'
-Copyright = '© Microsoft Corporation. All rights reserved.'
+GUID = '8a5abd94-39e4-49d8-a711-3332a006f9c4'
+Author = 'I.E.Sazonov'
+Copyright = '© I.E.Sazonov. All rights reserved.'
 Description = 'Provides cmdlets to work with local users and local groups'
 PowerShellVersion = '7.4'
 FormatsToProcess = @('LocalAccounts.format.ps1xml')
