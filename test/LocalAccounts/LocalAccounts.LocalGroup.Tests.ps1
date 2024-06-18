@@ -45,7 +45,7 @@ try {
     Describe "Verify Expected LocalGroup Cmdlets are present" -Tags "CI" {
 
         It "Test command presence" {
-            $result = Get-Command -Module Microsoft.PowerShell.LocalAccounts | ForEach-Object Name
+            $result = Get-Command -Module LocalAccounts | ForEach-Object Name
 
             $result -contains "New-LocalGroup" | Should -BeTrue
             $result -contains "Set-LocalGroup" | Should -BeTrue
@@ -93,7 +93,7 @@ try {
                 New-LocalGroup TestGroupAddRemove
                 return New-LocalGroup TestGroupAddRemove
             }
-            VerifyFailingTest $sb "GroupExists,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "GroupExists,LocalAccounts.Commands.NewLocalGroupCommand"
         }
 
         It "Can use SID for group name" {
@@ -113,7 +113,7 @@ try {
 
         It "Errors on empty group name" {
             $sb = { New-LocalGroup -Name "" }
-            VerifyFailingTest $sb "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalGroupCommand"
         }
 
         It "Creates New-LocalGroup with name(256) at max" {
@@ -142,7 +142,7 @@ try {
                 throw "An error was expected"
             }
             catch {
-                $_.FullyQualifiedErrorId | Should -Be "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+                $_.FullyQualifiedErrorId | Should -Be "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalGroupCommand"
             }
             finally {
                 #clean up erroneous creation
@@ -189,7 +189,7 @@ try {
         It "Error on names containing only spaces" {
             $sb = { New-LocalGroup -Name "   " }
 
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalGroupCommand"
         }
 
         It "Error on names containing only periods" {
@@ -197,7 +197,7 @@ try {
                 New-LocalGroup -Name "..."
             }
 
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalGroupCommand"
         }
 
         It "Errors on names ending in a period" {
@@ -205,20 +205,20 @@ try {
                 New-LocalGroup -Name "TestEndInPeriod."
             }
 
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalGroupCommand"
 
             $sb = {
                 New-LocalGroup -Name ".TestEndIn.Period.."
             }
 
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalGroupCommand"
         }
 
         It "Errors on Name over 256 characters" {
             $sb = { New-LocalGroup -Name ("A"*257) }
 
             try {
-                VerifyFailingTest $sb "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalGroupCommand"
+                VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalGroupCommand"
             }
             finally {
                 RemoveTestGroups -basename ("A"*257)
@@ -347,7 +347,7 @@ try {
             $sb = {
                 Get-LocalGroup 'TestGroupGetNameThatDoesntExist'
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
         }
 
         It "Errors on Get-LocalGroup by an invalid group SID" {
@@ -356,7 +356,7 @@ try {
                 Remove-LocalGroup TestGroupGet3
                 Get-LocalGroup -SID $result.SID
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
         }
 
         It "Can get no local groups if none match wildcard" {
@@ -443,14 +443,14 @@ try {
             $sb = {
                 Set-LocalGroup -Description "Test Group Set 1 newer still description"
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.SetLocalGroupCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.SetLocalGroupCommand"
         }
 
         It "Errors on Set-LocalGroup with an invalid Group name" {
             $sb = {
                 Set-LocalGroup -Name "NonexistantGroupName" -Description "Test Group Set 1 newer still description"
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.SetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.SetLocalGroupCommand"
         }
 
         It "Errors on Set-LocalGroup with an invalid Group SID" {
@@ -458,7 +458,7 @@ try {
                 Set-LocalGroup -SID "S-1-5-21-1220945662-555555555-555555555-5555" -Description "Test Group Set 1 newer still description"
             }
 
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.SetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.SetLocalGroupCommand"
         }
 
         It "Can Set-LocalGroup with description over 48 characters" {
@@ -564,14 +564,14 @@ try {
             $sb = {
                 Rename-LocalGroup
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Errors onRename-LocalGroup nonexistant group name" {
             $sb = {
                 Rename-LocalGroup nonexistantGroupName -NewName DummyNewName
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Errors onRename-LocalGroup nonexistant group SID" {
@@ -579,7 +579,7 @@ try {
             $sb = {
                 Rename-LocalGroup -SID "S-1-5-21-1220945662-555555555-555555555-5555" -NewName DummyNewName
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Errors on Rename-LocalGroup Renames a valid group to already existing name" {
@@ -588,7 +588,7 @@ try {
             $sb = {
                 Rename-LocalGroup TestGroupRename1 $newName
             }
-            VerifyFailingTest $sb "NameInUse,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "NameInUse,LocalAccounts.Commands.RenameLocalGroupCommand"
 
             $group1Name = (Get-LocalGroup -SID $group1SID).Name
             $group2Name = (Get-LocalGroup -SID $group2SID).Name
@@ -632,33 +632,33 @@ try {
             $sb = {
                 Rename-LocalGroup -Name TestGroupRename1 -NewName "   "
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Error on names containing only periods" {
             $sb = {
                 Rename-LocalGroup -Name TestGroupRename1 -NewName "..."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Errors on names ending in a period" {
             $sb = {
                 Rename-LocalGroup -Name TestGroupRename1 -NewName "TestEndInPeriod."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
 
             $sb = {
                 Rename-LocalGroup -Name TestGroupRename1 -NewName ".TestEndIn.Period.."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Errors on Rename-LocalGroup using a valid group but invalid -NewName" {
             $sb = {
                 Rename-LocalGroup -Name TestGroupRename1 -NewName "TestGroupRename<>1x"
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
         }
 
         It "Can Rename-LocalGroup using a valid group name at max length 256" {
@@ -674,7 +674,7 @@ try {
             $sb = {
                 Rename-LocalGroup TestGroupRename1 $newName
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalGroupCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalGroupCommand"
 
             (Get-LocalGroup -SID $group1SID).Name | Should -BeExactly TestGroupRename1
         }
@@ -711,7 +711,7 @@ try {
             $sb = {
                 Get-LocalGroup -SID $group1SID
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
 
             $finalCount = (Get-LocalGroup).Count
             $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -737,7 +737,7 @@ try {
                     $sb = {
                         Get-LocalGroup -SID $group1SID
                     }
-                    VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+                    VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
 
                     $finalCount = (Get-LocalGroup).Count
                     $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -755,12 +755,12 @@ try {
                     $sb = {
                         Get-LocalGroup -SID $group1SID
                     }
-                    VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+                    VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
 
                     $sb = {
                         Get-LocalGroup -SID $group2SID
                     }
-                    VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+                    VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
 
                     $finalCount = (Get-LocalGroup).Count
                     $initialCount -eq $finalCount + 2 | Should -BeTrue
@@ -843,7 +843,7 @@ try {
 
         It "Errors on Remove-LocalGroup without specifying a Name or SID" {
             $sb = { Remove-LocalGroup }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.RemoveLocalGroupCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.RemoveLocalGroupCommand"
         }
 
         It "Can Remove-LocalGroup with members" {
@@ -861,7 +861,7 @@ try {
             $sb = {
                 Get-LocalGroup TestGroupRemove1
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
 
             $finalCount = (Get-LocalGroup).Count
             $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -874,7 +874,7 @@ try {
             $sb = {
                 Remove-LocalGroup TestGroupRemove1NameThatDoesntExist
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.RemoveLocalGroupCommand"
 
             $finalCount = (Get-LocalGroup).Count
             $initialCount -eq $finalCount | Should -BeTrue
@@ -888,7 +888,7 @@ try {
                 Remove-LocalGroup -SID $group1SID
                 Remove-LocalGroup -SID $group1SID
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.RemoveLocalGroupCommand"
 
             $finalCount = (Get-LocalGroup).Count
             $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -907,13 +907,13 @@ try {
 
             # Confirm that the expected errors were caught
             $errCount | Should -Be 2
-            $fqeid | Should -Be "GroupNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupCommand"
+            $fqeid | Should -Be "GroupNotFound,LocalAccounts.Commands.RemoveLocalGroupCommand"
 
             # confirm that the first group was removed
             $sb = {
                 Get-LocalGroup "TestGroupRemove1"
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupCommand"
         }
     }
 }

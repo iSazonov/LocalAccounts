@@ -62,7 +62,7 @@ try {
     Describe "Verify Expected LocalGroupMember Cmdlets are present" -Tags "CI" {
 
         It "Test command presence" {
-            $result = Get-Command -Module Microsoft.PowerShell.LocalAccounts | ForEach-Object Name
+            $result = Get-Command -Module LocalAccounts | ForEach-Object Name
 
             $result -contains "Add-LocalGroupMember" | Should -BeTrue
             $result -contains "Get-LocalGroupMember" | Should -BeTrue
@@ -146,21 +146,21 @@ try {
             $sb = {
                 Add-LocalGroupMember -Member TestUser1
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.AddLocalGroupMemberCommand"
         }
 
         It "Errors on missing user parameter value missing" {
             $sb = {
                 Add-LocalGroupMember TestGroup1 -Member
             }
-            VerifyFailingTest $sb "MissingArgument,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MissingArgument,LocalAccounts.Commands.AddLocalGroupMemberCommand"
         }
 
         It "Errors on adding group to group" {
             $sb = {
                 Add-LocalGroupMember TestGroup1 TestGroup2
             }
-            VerifyFailingTest $sb "InvalidLocalGroupMemberOperation,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "InvalidLocalGroupMemberOperation,LocalAccounts.Commands.AddLocalGroupMemberCommand"
         }
 
         It "Can add array of members to group" {
@@ -199,7 +199,7 @@ try {
             $sb = {
                 Add-LocalGroupMember TestGroup1 -Member @("TestUser1", "TestNonexistentUser", "TestUser2")
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.AddLocalGroupMemberCommand"
 
             $result = Get-LocalGroupMember TestGroup1
             $result.Name -match ($OptDomainPrefix + "TestUser1") | Should -BeTrue
@@ -211,7 +211,7 @@ try {
                 Add-LocalGroupMember TestGroup1 -Member TestUser1
                 Add-LocalGroupMember TestGroup1 -Member TestUser1
             }
-            VerifyFailingTest $sb "MemberExists,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MemberExists,LocalAccounts.Commands.AddLocalGroupMemberCommand"
 
             $result = Get-LocalGroupMember TestGroup1
             $result.Name.EndsWith("TestUser1") | Should -BeTrue
@@ -222,21 +222,21 @@ try {
             $sb = {
                 Add-LocalGroupMember -Name TestGroup1 -Member TestNonexistentUser1
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.AddLocalGroupMemberCommand"
         }
 
         It "Errors on adding user to nonexistent group" {
             $sb = {
                 Add-LocalGroupMember TestNonexistentGroup1 -Member TestUser1 -ErrorAction Stop
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.AddLocalGroupMemberCommand"
         }
 
         It "Can respond to -ErrorAction Stop" {
             $sb = {
                 Add-LocalGroupMember TestGroup1 -Member @("TestUser1", "TestNonexistentUser1", "TestNonexistentUser2") -ErrorAction Stop -ErrorVariable OutputError | Out-Null
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.AddLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.AddLocalGroupMemberCommand"
 
             $result = Get-LocalGroupMember TestGroup1
             $result.Name -match ($OptDomainPrefix + "TestUser1") | Should -BeTrue
@@ -391,7 +391,7 @@ try {
             $sb = {
                 Get-LocalGroupMember NonexistentGroup
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.GetLocalGroupMemberCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.GetLocalGroupMemberCommand"
         }
 
         It "Can get specific group member by name" {
@@ -493,21 +493,21 @@ try {
             $sb = {
                 Remove-LocalGroupMember -Member TestUserRemove2
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Errors on member argument missing" {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove1 -Member
             }
-            VerifyFailingTest $sb "MissingArgument,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MissingArgument,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Errors on remove a group member not in the group" {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove2 -Member TestUserRemove2
             }
-            VerifyFailingTest $sb "MemberNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MemberNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Errors on remove group members by array of name" {
@@ -515,7 +515,7 @@ try {
                 Remove-LocalGroupMember TestGroupRemove2 -Member TestUserRemove2
                 Get-LocalGroupMember TestGroupRemove1
             }
-            VerifyFailingTest $sb "MemberNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MemberNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Can remove array of user names from group" {
@@ -552,14 +552,14 @@ try {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove1 -Member TestNonexistentUser1
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Errors on remove user from nonexistent group" {
             $sb = {
                 Remove-LocalGroupMember TestNonexistentGroup1 -Member TestUserRemove1 -ErrorAction Stop
             }
-            VerifyFailingTest $sb "GroupNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "GroupNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         #TODO: 16.A valid user attempts to remove a user/group from a group to which they don’t have access
@@ -568,7 +568,7 @@ try {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove1 -Member @("TestUserRemove1", "TestNonexistentUser", "TestUserRemove2")
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
 
             $result = Get-LocalGroupMember TestGroupRemove2
             $result | Should -Be $null
@@ -578,14 +578,14 @@ try {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove1 -Member TestGroupRemove2 -ErrorAction Stop
             }
-            VerifyFailingTest $sb "MemberNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "MemberNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
         }
 
         It "Can respond to -ErrorAction Stop" {
             $sb = {
                 Remove-LocalGroupMember TestGroupRemove1 -Member @("TestUserRemove1", "TestNonexistentUser1", "TestUserRemove2") -ErrorAction Stop -ErrorVariable outError | Out-Null
             }
-            VerifyFailingTest $sb "PrincipalNotFound,Microsoft.PowerShell.Commands.RemoveLocalGroupMemberCommand"
+            VerifyFailingTest $sb "PrincipalNotFound,LocalAccounts.Commands.RemoveLocalGroupMemberCommand"
 
             $result = Get-LocalGroupMember TestGroupRemove1 2>&1
             $result.Name -match ($OptDomainPrefix + "TestUserRemove2") | Should -BeTrue

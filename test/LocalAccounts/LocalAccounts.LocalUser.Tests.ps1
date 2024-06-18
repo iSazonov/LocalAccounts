@@ -49,7 +49,7 @@ try {
     Describe "Verify Expected LocalUser Cmdlets are present" -Tags 'CI' {
 
         It "Test command presence" {
-            $result = Get-Command -Module Microsoft.PowerShell.LocalAccounts | ForEach-Object Name
+            $result = Get-Command -Module LocalAccounts | ForEach-Object Name
 
             $result -contains "New-LocalUser" | Should -BeTrue
             $result -contains "Set-LocalUser" | Should -BeTrue
@@ -64,7 +64,7 @@ try {
     Describe "Verify Expected LocalUser Aliases are present" -Tags @('CI', 'RequireAdminOnWindows') {
 
         It "Test command presence" {
-            $result = Get-Alias | ForEach-Object { if ($_.Source -eq "Microsoft.PowerShell.LocalAccounts") {$_}}
+            $result = Get-Alias | ForEach-Object { if ($_.Source -eq "LocalAccounts") {$_}}
 
             $result.Name -contains "algm" | Should -BeTrue
             $result.Name -contains "dlu" | Should -BeTrue
@@ -127,12 +127,12 @@ try {
             $sb = {
                 New-LocalUser -Name "" -NoPassword
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalUserCommand"
 
             $sb = {
                 New-LocalUser -Name $null -NoPassword
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Errors on Invalid characters" {
@@ -166,24 +166,24 @@ try {
             $sb = {
                 New-LocalUser -Name "   " -NoPassword
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalUserCommand"
 
             $sb = {
                 New-LocalUser -Name "..." -NoPassword
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Errors on names ending in a period" {
             $sb = {
                 New-LocalUser -Name "TestEndInPeriod." -NoPassword
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalUserCommand"
 
             $sb = {
                 New-LocalUser -Name ".TestEndIn.Period.." -NoPassword
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Errors on name collison" {
@@ -191,7 +191,7 @@ try {
                 New-LocalUser TestUserNew1 -NoPassword
                 New-LocalUser TestUserNew1 -NoPassword
             }
-            VerifyFailingTest $sb "UserExists,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "UserExists,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Errors on Name over 20 characters" {
@@ -199,7 +199,7 @@ try {
                 New-LocalUser -Name ("A"*21) -NoPassword
             }
             try {
-                VerifyFailingTest $sb "ParameterArgumentValidationError,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+                VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalUserCommand"
             }
             finally {
                 RemoveTestUsers -basename ("A"*21)
@@ -235,7 +235,7 @@ try {
             $sb = {
                 New-LocalUser TestUserNew1 -NoPassword -AccountExpires $expiration
             }
-            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Can set AccountNeverExpires to create a user with null for AccountExpires date" {
@@ -253,7 +253,7 @@ try {
             $sb = {
                 New-LocalUser TestUserNew1 -NoPassword -AccountExpires $dateInFuture -AccountNeverExpires
             }
-            VerifyFailingTest $sb "InvalidParameters,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidParameters,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Can set empty string for Description" {
@@ -328,7 +328,7 @@ try {
             $sb = {
                 New-LocalUser TestUserNew1 -Password (ConvertTo-SecureString "" -AsPlainText -Force)
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
         }
 
         It "Can set Password value at max 256" {
@@ -346,18 +346,18 @@ try {
             $sb = {
                 New-LocalUser TestUserNew1 -Password (ConvertTo-SecureString ("A"*257) -AsPlainText -Force)
             }
-            VerifyFailingTest $sb "InvalidPassword,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidPassword,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "User should not be created when invalid password is provided" {
             $sb = {
                 New-LocalUser TestUserNew1 -Password (ConvertTo-SecureString ("A"*257) -AsPlainText -Force)
             }
-            VerifyFailingTest $sb "InvalidPassword,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "InvalidPassword,LocalAccounts.Commands.NewLocalUserCommand"
             $sb1 = {
                 Get-LocalUser TestUserNew1
             }
-            VerifyFailingTest $sb1 "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb1 "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Can set UserMayNotChangePassword" {
@@ -383,7 +383,7 @@ try {
             $sb = {
                 New-LocalUser TestUserNew1 -NoPassword -PasswordNeverExpires
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.NewLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "UserMayChangePassword is true by default" {
@@ -501,28 +501,28 @@ try {
             $sb = {
                 Get-LocalUser -Name
             }
-            VerifyFailingTest $sb "MissingArgument,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "MissingArgument,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Error on SID not being supplied an argument" {
             $sb = {
                 Get-LocalUser -SID
             }
-            VerifyFailingTest $sb "MissingArgument,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "MissingArgument,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Error on both -Name and -SID being supplied at the same time" {
             $sb = {
                 Get-LocalUser -Name TestUserGet1 -SID (Get-LocalUser TestUserGet1).SID
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Errors on a non-existant user by name" {
             $sb = {
                 Get-LocalUser 'TestUserGetNameThatDoesntExist'
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Errors on a non-existant user by SID" {
@@ -532,7 +532,7 @@ try {
                 Remove-LocalUser TestUserGet3
                 Get-LocalUser -SID $sid
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
         }
 
         It "Gets no results using a wildcard" {
@@ -646,14 +646,14 @@ try {
             $sb = {
                 Set-LocalUser -Name TestUserSetNonexistent1 -Description "Test User Set 1 new description" -ErrorAction Stop
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.SetLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Errors on nonexistent SID" {
             $sb = {
                 Set-LocalUser -SID "S-1-5-32-545" -Description "Test User Set 1 new description" -ErrorAction Stop
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.SetLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Can set AccountExpires to the future" {
@@ -687,7 +687,7 @@ try {
             $sb = {
                 Set-LocalUser TestUserSet1 -AccountExpires $expiration
             }
-            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.SetLocalUserCommand"
+            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Can set AccountNeverExpires to create a user with null for AccountExpires date" {
@@ -703,7 +703,7 @@ try {
             $sb = {
                 Set-LocalUser TestUserSet1 -AccountExpires $dateInFuture -AccountNeverExpires
             }
-            VerifyFailingTest $sb "InvalidParameters,Microsoft.PowerShell.Commands.SetLocalUserCommand"
+            VerifyFailingTest $sb "InvalidParameters,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Can set user description to empty string" {
@@ -751,14 +751,14 @@ try {
             $sb = {
                 Set-LocalUser -Name TestUserSet1 -Password (ConvertTo-SecureString "" -AsPlainText -Force)
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
         }
 
         It "Errors when Password is null" {
             $sb = {
                 Set-LocalUser -Name TestUserSet1 -Password (ConvertTo-SecureString $null -AsPlainText -Force)
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationErrorNullNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
         }
 
         It "Can set Password value at max 256" {
@@ -776,7 +776,7 @@ try {
             $sb = {
                 Set-LocalUser -Name TestUserSet1 -Password (ConvertTo-SecureString ("A"*257) -AsPlainText -Force) -ErrorAction Stop
             }
-            VerifyFailingTest $sb "InvalidPassword,Microsoft.PowerShell.Commands.SetLocalUserCommand"
+            VerifyFailingTest $sb "InvalidPassword,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It 'Can use PasswordNeverExpires:$true to null a PasswordExpires date' {
@@ -900,14 +900,14 @@ try {
             $sb = {
                 Rename-LocalUser
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.RenameLocalUserCommand"
         }
 
         It "Errors on nonexistant user name" {
             $sb = {
                 Rename-LocalUser -Name TestUserRenameThatDoesntExist -NewName TestUserRenameThatDoesntExist2
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.RenameLocalUserCommand"
         }
 
         It "Errors on nonexistant user SID" {
@@ -915,7 +915,7 @@ try {
                 Remove-LocalUser -SID $user1SID
                 Rename-LocalUser -SID $user1SID -NewName TestUserRename2
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.RenameLocalUserCommand"
         }
 
         It "Errors on rename of user to existing user, name collison" {
@@ -924,7 +924,7 @@ try {
                 Rename-LocalUser -Name TestUserRename1 -NewName TestUserRename4
             }
             try {
-                VerifyFailingTest $sb "NameInUse,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+                VerifyFailingTest $sb "NameInUse,LocalAccounts.Commands.RenameLocalUserCommand"
             }
             finally {
                 RemoveTestUsers -basename TestUserRename4
@@ -966,24 +966,24 @@ try {
             $sb = {
                 Rename-LocalUser -Name TestUserRename1 -NewName "..."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalUserCommand"
 
             $sb = {
                 Rename-LocalUser -Name TestUserRename1 -NewName "   "
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalUserCommand"
         }
 
         It "Errors on names ending in a period" {
             $sb = {
                 Rename-LocalUser -Name TestUserRename1 -NewName "TestEndInPeriod."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalUserCommand"
 
             $sb = {
                 Rename-LocalUser -Name TestUserRename1 -NewName ".TestEndIn.Period.."
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalUserCommand"
         }
 
         It "Can rename by only name" {
@@ -997,7 +997,7 @@ try {
             $sb = {
                 Rename-LocalUser -Name TestUserRename1 -NewName ("A"*21)
             }
-            VerifyFailingTest $sb "InvalidName,Microsoft.PowerShell.Commands.RenameLocalUserCommand"
+            VerifyFailingTest $sb "InvalidName,LocalAccounts.Commands.RenameLocalUserCommand"
         }
     }
 
@@ -1033,7 +1033,7 @@ try {
             $sb = {
                 Get-LocalUser -SID $user1SID
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
 
             $finalCount = (Get-LocalUser).Count
             $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -1059,7 +1059,7 @@ try {
                     $sb = {
                         Get-LocalUser -SID $user1SID
                     }
-                    VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+                    VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
 
                     $finalCount = (Get-LocalUser).Count
                     $initialCount -eq $finalCount + 1 | Should -BeTrue
@@ -1077,12 +1077,12 @@ try {
                     $sb = {
                         Get-LocalUser -SID $user1SID
                     }
-                    VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+                    VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
 
                     $sb = {
                         Get-LocalUser -SID $user2SID
                     }
-                    VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.GetLocalUserCommand"
+                    VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.GetLocalUserCommand"
 
                     $finalCount = (Get-LocalUser).Count
                     $initialCount -eq $finalCount + 2 | Should -BeTrue
@@ -1137,7 +1137,7 @@ try {
             $sb = {
                 Remove-LocalUser
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.RemoveLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.RemoveLocalUserCommand"
         }
 
         It "Can remove by array of names" {
@@ -1180,7 +1180,7 @@ try {
             $sb = {
                 Remove-LocalUser TestUserRemove1NameThatDoesntExist
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.RemoveLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.RemoveLocalUserCommand"
 
             $finalCount = (Get-LocalUser).Count
             $initialCount -eq $finalCount | Should -BeTrue
@@ -1195,7 +1195,7 @@ try {
             $sb = {
                 Remove-LocalUser -SID $user1SID
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.RemoveLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.RemoveLocalUserCommand"
 
             $finalCount = (Get-LocalUser).Count
             $initialCount -eq $finalCount | Should -BeTrue
@@ -1209,7 +1209,7 @@ try {
                 # Nothing to do here
             }
             $outError.Count | Should -Be 2
-            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,Microsoft.PowerShell.Commands.RemoveLocalUserCommand"
+            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,LocalAccounts.Commands.RemoveLocalUserCommand"
 
             $getResult = Get-LocalUser TestUserGet1 2>&1
             $getResult.FullyQualifiedErrorId -match "UserNotFound" | Should -BeTrue
@@ -1333,7 +1333,7 @@ try {
             $sb = {
                 Enable-LocalUser
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.EnableLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.EnableLocalUserCommand"
         }
 
         It "Can enable an already enabled user by name" {
@@ -1361,7 +1361,7 @@ try {
             $sb = {
                 Enable-LocalUser -Name TestUserEnableNameThatDoesntExist
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.EnableLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.EnableLocalUserCommand"
         }
 
         It "Errors on enabling an invalid user by SID" {
@@ -1369,7 +1369,7 @@ try {
                 Remove-LocalUser -SID $enabledUser1SID
                 Enable-LocalUser -SID $enabledUser1SID
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.EnableLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.EnableLocalUserCommand"
         }
 
         It "Can respond to -ErrorAction Stop" {
@@ -1380,7 +1380,7 @@ try {
                 # do nothing
             }
             $outError.Count | Should -Be 2
-            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,Microsoft.PowerShell.Commands.EnableLocalUserCommand"
+            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,LocalAccounts.Commands.EnableLocalUserCommand"
 
             $getResult = Get-LocalUser TestUserDisabled1 2>&1
             $getResult.Enabled | Should -BeTrue
@@ -1504,7 +1504,7 @@ try {
             $sb = {
                 Disable-LocalUser
             }
-            VerifyFailingTest $sb "AmbiguousParameterSet,Microsoft.PowerShell.Commands.DisableLocalUserCommand"
+            VerifyFailingTest $sb "AmbiguousParameterSet,LocalAccounts.Commands.DisableLocalUserCommand"
         }
 
         It "Can disable an already disabled user by name" {
@@ -1529,7 +1529,7 @@ try {
             $sb = {
                 Disable-LocalUser -Name TestUserNameThatDoesntExist
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.DisableLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.DisableLocalUserCommand"
         }
 
         It "Errors on disabling an invalid user by SID" {
@@ -1537,7 +1537,7 @@ try {
                 Remove-LocalUser -SID $enabledUser1SID
                 return Disable-LocalUser -SID $enabledUser1SID
             }
-            VerifyFailingTest $sb "UserNotFound,Microsoft.PowerShell.Commands.DisableLocalUserCommand"
+            VerifyFailingTest $sb "UserNotFound,LocalAccounts.Commands.DisableLocalUserCommand"
         }
 
         It "Can respond to -ErrorAction Stop" {
@@ -1548,7 +1548,7 @@ try {
                 # Do nothing here
             }
             $outError.Count | Should -Be 2
-            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,Microsoft.PowerShell.Commands.DisableLocalUserCommand"
+            $outError[0].ErrorRecord.FullyQualifiedErrorId | Should -Be "UserNotFound,LocalAccounts.Commands.DisableLocalUserCommand"
 
             $getResult = Get-LocalUser TestUserEnabled1 2>&1
             $getResult.Enabled | Should -BeFalse
