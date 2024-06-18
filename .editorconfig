@@ -122,7 +122,7 @@ dotnet_code_quality_unused_parameters = non_public:suggestion
 
 csharp_preserve_single_line_blocks = true
 csharp_preserve_single_line_statements = false
-csharp_prefer_braces = true:silent
+csharp_prefer_braces = true:warning
 
 csharp_prefer_static_local_function = true:suggestion
 csharp_prefer_simple_using_statement = false:none

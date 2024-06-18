@@ -14,13 +14,11 @@ namespace LocalAccounts
     {
         #region Public Properties
         /// <summary>
-        /// Gets the <see cref="System.Management.Automation.ErrorCategory"/>
-        /// value for this exception.
+        /// Gets the <see cref="System.Management.Automation.ErrorCategory"/> value for this exception.
         /// </summary>
         public ErrorCategory ErrorCategory
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -31,7 +29,6 @@ namespace LocalAccounts
         public object? Target
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -42,12 +39,15 @@ namespace LocalAccounts
         {
             get
             {
-                string exname = "Exception";
-                var exlen = exname.Length;
+                string exceptionName = "Exception";
+                var exceptionNameLength = exceptionName.Length;
                 var name = this.GetType().Name;
 
-                if (name.EndsWith(exname, StringComparison.OrdinalIgnoreCase) && name.Length > exlen)
-                    name = name.Substring(0, name.Length - exlen);
+                if (name.EndsWith(exceptionName, StringComparison.OrdinalIgnoreCase) && name.Length > exceptionNameLength)
+                {
+                    name = name.Substring(0, name.Length - exceptionNameLength);
+                }
+
                 return name;
             }
         }
@@ -92,7 +92,6 @@ namespace LocalAccounts
         public UInt32 StatusCode
         {
             get;
-            private set;
         }
         #endregion Public Properties
 
@@ -136,8 +135,7 @@ namespace LocalAccounts
 
     /// <summary>
     /// Exception indicating an error occurred when a native function
-    /// is called that returns a Win32 error code as opposed to an
-    /// NT Status code.
+    /// is called that returns a Win32 error code as opposed to an NT Status code.
     /// </summary>
     public class Win32InternalException : LocalAccountsException
     {
@@ -148,7 +146,6 @@ namespace LocalAccounts
         public int NativeErrorCode
         {
             get;
-            private set;
         }
         #endregion Public Properties
 
