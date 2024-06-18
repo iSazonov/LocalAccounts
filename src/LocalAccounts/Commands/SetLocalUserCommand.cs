@@ -9,7 +9,7 @@ using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Set-LocalUser cmdlet changes the properties of a user account in the

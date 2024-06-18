@@ -9,7 +9,7 @@ using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Get-LocalUser cmdlet gets local user accounts from the Windows Security

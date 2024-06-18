@@ -8,7 +8,7 @@ using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Remove-LocalGroup cmdlet deletes a security group from the Windows

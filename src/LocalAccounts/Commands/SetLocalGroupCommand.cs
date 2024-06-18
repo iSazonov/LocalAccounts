@@ -8,7 +8,7 @@ using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Set-LocalGroup cmdlet modifies the properties of a local security group

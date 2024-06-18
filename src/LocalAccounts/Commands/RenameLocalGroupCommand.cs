@@ -9,7 +9,7 @@ using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Rename-LocalGroup cmdlet renames a local security group in the Security

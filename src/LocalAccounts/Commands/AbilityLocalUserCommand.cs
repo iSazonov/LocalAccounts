@@ -7,7 +7,7 @@ using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// It is base class for Enable-LocalUser and Disable-LocalUser cmdlets.

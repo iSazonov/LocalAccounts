@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Enable-LocalUser cmdlet enables local user accounts. When a user account

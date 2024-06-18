@@ -2,7 +2,7 @@
 
 using System.Management.Automation;
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Disable-LocalUser cmdlet disables local user accounts. When a user

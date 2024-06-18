@@ -8,7 +8,7 @@ using System.Management.Automation.SecurityAccountsManager;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The following is the base class for Get-LocalGroupMember, Add-LocalGroupMember and Remove-LocalGroupMember cmdlets.

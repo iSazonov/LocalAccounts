@@ -10,7 +10,7 @@ using System.Management.Automation.SecurityAccountsManager.Extensions;
 using System.Security.Principal;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The Get-LocalGroupMember cmdlet gets the members of a local group.

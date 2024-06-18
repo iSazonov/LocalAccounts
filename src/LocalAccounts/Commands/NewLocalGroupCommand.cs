@@ -7,7 +7,7 @@ using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
 #endregion
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// The New-LocalGroup Cmdlet can be used to create a new local security group
