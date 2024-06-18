@@ -3,7 +3,6 @@
 using System;
 using System.Management.Automation;
 using System.Management.Automation.SecurityAccountsManager;
-using System.Runtime.Serialization;
 
 namespace LocalAccounts
 {
@@ -64,24 +63,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public LocalAccountsException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public LocalAccountsException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public LocalAccountsException(string? message, Exception? ex) : base(message, ex) { }
-
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected LocalAccountsException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -124,23 +118,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public InternalException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public InternalException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public InternalException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected InternalException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -184,10 +174,12 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public Win32InternalException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
+
         public Win32InternalException(string? message) : base(message) { }
         /// <summary>
         /// Compliance Constructor.
@@ -195,12 +187,6 @@ namespace LocalAccounts
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public Win32InternalException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected Win32InternalException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -231,12 +217,6 @@ namespace LocalAccounts
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public InvalidPasswordException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected InvalidPasswordException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -262,18 +242,13 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public InvalidParametersException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public InvalidParametersException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected InvalidParametersException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -290,23 +265,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public AccessDeniedException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public AccessDeniedException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public AccessDeniedException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected AccessDeniedException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -323,23 +294,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public InvalidNameException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public InvalidNameException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public InvalidNameException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected InvalidNameException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -356,23 +323,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public NameInUseException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public NameInUseException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public NameInUseException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected NameInUseException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -390,23 +353,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public NotFoundException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public NotFoundException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public NotFoundException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected NotFoundException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -423,23 +382,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public PrincipalNotFoundException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public PrincipalNotFoundException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public PrincipalNotFoundException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected PrincipalNotFoundException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -456,23 +411,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public GroupNotFoundException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public GroupNotFoundException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public GroupNotFoundException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected GroupNotFoundException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -489,23 +440,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public UserNotFoundException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public UserNotFoundException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public UserNotFoundException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected UserNotFoundException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -522,23 +469,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public MemberNotFoundException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public MemberNotFoundException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public MemberNotFoundException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected MemberNotFoundException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -556,23 +499,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public ObjectExistsException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public ObjectExistsException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public ObjectExistsException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected ObjectExistsException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -589,23 +528,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public GroupExistsException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public GroupExistsException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public GroupExistsException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected GroupExistsException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -622,23 +557,19 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public UserExistsException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public UserExistsException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public UserExistsException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected UserExistsException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 
     /// <summary>
@@ -655,22 +586,18 @@ namespace LocalAccounts
         /// Compliance Constructor.
         /// </summary>
         public MemberExistsException() : base() { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         public MemberExistsException(string? message) : base(message) { }
+
         /// <summary>
         /// Compliance Constructor.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public MemberExistsException(string? message, Exception? ex) : base(message, ex) { }
-        /// <summary>
-        /// Compliance Constructor.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="ctx"></param>
-        protected MemberExistsException(SerializationInfo info, StreamingContext ctx) : base(info, ctx) { }
     }
 }
