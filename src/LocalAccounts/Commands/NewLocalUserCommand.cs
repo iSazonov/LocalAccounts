@@ -193,7 +193,7 @@ namespace Microsoft.PowerShell.Commands
                         {
                             // It is a breaking change.
                             //  Windows PowerShell ignores a domain password policy and can create the account without password.
-                            //  AccountManagment API follows a domain password policy and can not create the account without password.
+                            //  AccountManagement API follows a domain password policy and can not create the account without password.
                             userPrincipal.PasswordNotRequired = true;
                             userPrincipal.Save();
                         }
@@ -235,7 +235,7 @@ namespace Microsoft.PowerShell.Commands
             catch (PrincipalExistsException e)
             {
                 // It is a breaking change.
-                // Windows PowerShell ignores the error and set password for exisisting user. This looks like Windows PowerShell bug.
+                // Windows PowerShell ignores the error and set password for existing user. This looks like Windows PowerShell bug.
                 var exc = new UserExistsException(Name, Name, e);
 
                 WriteError(new ErrorRecord(exc, "UserExists", ErrorCategory.ResourceExists, targetObject: Name));

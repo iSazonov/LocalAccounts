@@ -99,7 +99,7 @@ namespace Microsoft.PowerShell.Commands
 
                         /*
                         // Follow code is more useful but
-                        //    1. it is a breaking change (output UserPrincipal and GoupPrincipal types instead of LocalPrincipal type)
+                        //    1. it is a breaking change (output UserPrincipal and GroupPrincipal types instead of LocalPrincipal type)
                         //    2. it breaks a table output.
                         if (principal is GroupPrincipal)
                         {

@@ -39,8 +39,7 @@ namespace Microsoft.PowerShell.Commands
 
         /// <summary>
         /// Gets the error name. This is used as the ErrorId parameter when
-        /// constructing a PowerShell <see cref="System.Management.Automation.ErrorRecord"/>
-        /// oject.
+        /// constructing a PowerShell <see cref="System.Management.Automation.ErrorRecord"/> object.
         /// </summary>
         public string ErrorName
         {

@@ -23,6 +23,5 @@ namespace Microsoft.PowerShell.Commands
         {
             _ability = false;
         }
-
     }
 }

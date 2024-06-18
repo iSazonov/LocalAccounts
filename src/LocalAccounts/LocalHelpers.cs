@@ -241,7 +241,7 @@ internal static class LocalHelpers
     }
 
     /// <summary>
-    /// Cretae new <see cref="LocalGroup"/> object from the GroupPrincipal object.
+    /// Create new <see cref="LocalGroup"/> object from the GroupPrincipal object.
     /// </summary>
     /// <param name="group">
     /// An <see cref="GroupPrincipal"/> object.
@@ -259,7 +259,7 @@ internal static class LocalHelpers
     };
 
     /// <summary>
-    /// Cretae new <see cref="LocalGroup"/> object from the UserPrincipal object.
+    /// Create new <see cref="LocalGroup"/> object from the UserPrincipal object.
     /// </summary>
     /// <param name="user">
     /// An <see cref="UserPrincipal"/> object.
