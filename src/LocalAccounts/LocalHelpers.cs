@@ -17,6 +17,37 @@ namespace LocalAccounts.Helpers;
 internal static class LocalHelpers
 {
     /// <summary>
+    /// Gets the Identifier Authority portion of a <see cref="SecurityIdentifier"/>.
+    /// </summary>
+    /// <param name="sidBinary">.</param>
+    /// <returns>
+    /// A long integer value containing the SecurityIdentifier's Identifier Authority value.
+    /// </returns>
+    /// <remarks>
+    /// This method is used primarily for determining the Source of a Principal.
+    /// The Win32 API LsaLookupUserAccountType function does not (yet) properly
+    /// identify MicrosoftAccount principals.
+    /// </remarks>
+    private static long GetIdentifierAuthority(byte[] sidBinary)
+    {
+        // The Identifier Authority is six bytes wide,
+        // in big-endian format, starting at the third byte
+        long authority = (long)sidBinary[7] +
+                        (((long)sidBinary[6]) << 8) +
+                        (((long)sidBinary[5]) << 16) +
+                        (((long)sidBinary[4]) << 24) +
+                        (((long)sidBinary[3]) << 32) +
+                        (((long)sidBinary[2]) << 40);
+
+        return authority;
+    }
+
+    internal static bool IsMsaAccount(byte[] sidBinary)
+    {
+        return GetIdentifierAuthority(sidBinary) == 11;
+    }
+
+    /// <summary>
     /// Get FQDN computer name.
     /// </summary>
     internal static string GetFullComputerName()

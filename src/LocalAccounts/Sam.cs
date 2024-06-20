@@ -3,6 +3,7 @@
 using System;
 using System.Security.Principal;
 
+using LocalAccounts.Helpers;
 using LocalAccounts.Native;
 
 [assembly:System.Runtime.Versioning.SupportedOSPlatform("windows")]
@@ -28,9 +29,9 @@ namespace LocalAccounts.Extensions
         /// </returns>
         internal static PrincipalSource? GetPrincipalSource(SecurityIdentifier sid)
         {
-            var bSid = new byte[sid.BinaryLength];
+            var binarySid = new byte[sid.BinaryLength];
 
-            sid.GetBinaryForm(bSid, 0);
+            sid.GetBinaryForm(binarySid, 0);
 
             LSA_USER_ACCOUNT_TYPE type = LSA_USER_ACCOUNT_TYPE.UnknownUserAccountType;
 
@@ -40,7 +41,7 @@ namespace LocalAccounts.Extensions
             // LsaLookupUserAccountType.
             if (Environment.OSVersion.Version.Major >= 10)
             {
-                UInt32 status = Win32.LsaLookupUserAccountType(bSid, out type);
+                UInt32 status = Win32.LsaLookupUserAccountType(binarySid, out type);
                 if (NtStatus.IsError(status))
                 {
                     type = LSA_USER_ACCOUNT_TYPE.UnknownUserAccountType;
@@ -66,7 +67,7 @@ namespace LocalAccounts.Extensions
                         return PrincipalSource.MicrosoftAccount;
 
                     case LSA_USER_ACCOUNT_TYPE.InternetUserAccountType:
-                        return sid.IsMsaAccount()
+                        return LocalHelpers.IsMsaAccount(binarySid)
                             ? PrincipalSource.MicrosoftAccount
                             : PrincipalSource.Unknown;
 

@@ -99,47 +99,6 @@ namespace LocalAccounts.Extensions
         }
     }
 
-    /// <summary>
-    /// Provides extension methods for the SecurityIdentifier class.
-    /// </summary>
-    internal static class SidExtensions
-    {
-        /// <summary>
-        /// Gets the Identifier Authority portion of a <see cref="SecurityIdentifier"/>
-        /// </summary>
-        /// <param name="sid">The SecurityIdentifier containing the desired Authority.</param>
-        /// <returns>
-        /// A long integer value containing the SecurityIdentifier's Identifier Authority value.
-        /// </returns>
-        /// <remarks>
-        /// This method is used primarily for determining the Source of a Principal.
-        /// The Win32 API LsaLookupUserAccountType function does not (yet) properly
-        /// identify MicrosoftAccount principals.
-        /// </remarks>
-        internal static long GetIdentifierAuthority(this SecurityIdentifier sid)
-        {
-            byte[] sidBinary = new byte[sid.BinaryLength];
-
-            sid.GetBinaryForm(sidBinary, 0);
-
-            // The Identifier Authority is six bytes wide,
-            // in big-endian format, starting at the third byte
-            long authority = (long)(((long)sidBinary[2]) << 40) +
-                                    (((long)sidBinary[3]) << 32) +
-                                    (((long)sidBinary[4]) << 24) +
-                                    (((long)sidBinary[5]) << 16) +
-                                    (((long)sidBinary[6]) << 8) +
-                                    (((long)sidBinary[7]));
-
-            return authority;
-        }
-
-        internal static bool IsMsaAccount(this SecurityIdentifier sid)
-        {
-            return sid.GetIdentifierAuthority() == 11;
-        }
-    }
-
     internal static class SecureStringExtensions
     {
         /// <summary>
