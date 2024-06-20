@@ -322,9 +322,16 @@ try {
 
         It "Errors when Password is an empty string" {
             $sb = {
-                New-LocalUser TestUserNew1 -Password (ConvertTo-SecureString "" -AsPlainText -Force)
+                New-LocalUser TestUserNew1 -Password ""
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,LocalAccounts.Commands.NewLocalUserCommand"
+        }
+
+        It "Errors when Password is null" {
+            $sb = {
+                New-LocalUser TestUserNew1 -Password $null
+            }
+            VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.NewLocalUserCommand"
         }
 
         It "Can set Password value at max 256" {
@@ -745,16 +752,16 @@ try {
 
         It "Errors when Password is an empty string" {
             $sb = {
-                Set-LocalUser -Name TestUserSet1 -Password (ConvertTo-SecureString "" -AsPlainText -Force)
+                Set-LocalUser -Name TestUserSet1 -Password ""
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorEmptyStringNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "CannotConvertArgumentNoMessage,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Errors when Password is null" {
             $sb = {
-                Set-LocalUser -Name TestUserSet1 -Password (ConvertTo-SecureString $null -AsPlainText -Force)
+                Set-LocalUser -Name TestUserSet1 -Password $null
             }
-            VerifyFailingTest $sb "ParameterArgumentValidationErrorNullNotAllowed,LocalAccounts.Commands.ConvertToSecureStringCommand"
+            VerifyFailingTest $sb "ParameterArgumentValidationError,LocalAccounts.Commands.SetLocalUserCommand"
         }
 
         It "Can set Password value at max 256" {

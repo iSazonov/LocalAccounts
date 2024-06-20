@@ -103,7 +103,7 @@ namespace LocalAccounts.Commands
         /// Specifies the password for the local user account.
         /// </summary>
         [Parameter]
-        [ValidateNotNull]
+        [ValidateNotNullOrEmpty]
         public System.Security.SecureString Password { get; set; } = null!;
 
         /// <summary>
