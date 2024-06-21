@@ -281,6 +281,7 @@ internal static class LocalHelpers
     /// <returns>
     /// An <see cref="LocalGroup"/> object corresponding to the GroupPrincipal parameter.
     /// </returns>
+    [return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull(nameof(group))]
     internal static LocalGroup? GetTargetGroupObject(GroupPrincipal? group)
     => group is null ? null : new LocalGroup()
     {
