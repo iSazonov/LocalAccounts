@@ -34,9 +34,28 @@ The original module uses non-public APIs and therefore cannot be part of an open
 
   The module from this repository can be imported to `pwsh` directly. In addition, cmdlet objects can also be directly used in .Net applications.
 
-- There is [an annoying bug](https://github.com/PowerShell/PowerShell/issues/2996) in the original module, which is fixed in this repository.
-
 - This project is open to innovation.
+
+- There are some issues in the original module, which is fixed in this repository:
+
+  - [an annoying bug](https://github.com/PowerShell/PowerShell/issues/2996) ([the same](https://github.com/PowerShell/PowerShell/issues/15585)) (`Get-LocalGroupMember : Failed to compare two elements in the array`)
+
+  - [an issue](https://github.com/PowerShell/PowerShell/issues/16049) (impossible to clear `Description` property)
+
+  - [an issue](https://github.com/PowerShell/PowerShell/issues/2150) (`Description` property length limitation)
+
+  - [an issue](https://github.com/PowerShell/PowerShell/issues/11965) (incorrect `PasswordRequired` property)
+
+  - There are some reports about telemetry loading error, which are not present in this repository:
+
+    - [Issue 21645](https://github.com/PowerShell/PowerShell/issues/21645)
+      > Could not load type 'Microsoft.PowerShell.Telemetry.Internal.TelemetryAPI' from assembly 'System.Management.Automation, Version=7.4.2.500, Culture=neutral, PublicKeyToken=*****'.
+
+    - [Issue 18624](https://github.com/PowerShell/PowerShell/issues/18624)
+      > New-LocalUser: Could not load type 'Microsoft.PowerShell.Telemetry.Internal.TelemetryAPI' from assembly 'System.Management.Automation, Version=7.3.0.500, Culture=neutral, PublicKeyToken=31bf3856ad364e35'.
+
+    - [Issue 18264](https://github.com/PowerShell/PowerShell/issues/18264)
+      > New-LocalUser: Could not load type 'Microsoft.PowerShell.Telemetry.Internal.TelemetryAPI' from assembly 'System.Management.Automation, Version=7.2.6.500, Culture=neutral, PublicKeyToken=31bf3856ad364e35'.
 
 ## Backward compatibility with `Microsoft.PowerShell.LocalAccounts`
 
