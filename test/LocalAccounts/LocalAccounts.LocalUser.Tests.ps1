@@ -341,6 +341,7 @@ try {
             $result.Name | Should -BeExactly TestUserNew1
             $result.Description | Should -BeNullOrEmpty
             $result.Enabled | Should -BeTrue
+            $result.PasswordRequired | Should -BeTrue
             $result.SID | Should -Not -BeNullOrEmpty
             $result.ObjectClass | Should -Be User
         }
@@ -554,7 +555,6 @@ try {
             # TODO $LastLogon
             # TODO $PasswordExpires
             # TODO $PasswordLastSet
-            # TODO $PasswordRequired
             # TODO $PrincipalSource
 
             $result = New-LocalUser TestUserGet3 -NoPassword -AccountExpires $AccountExpires -Description $Description -Disabled -FullName $FullName -UserMayNotChangePassword
@@ -565,6 +565,7 @@ try {
             $result.Enabled | Should -BeFalse
             $result.FullName | Should -BeExactly $FullName
             $result.ObjectClass -eq "User" | Should -BeTrue
+            $result.PasswordRequired | Should -BeFalse
             $result.UserMayChangePassword | Should -BeFalse
             $result.SID | Should -Not -BeNullOrEmpty
             $result.ObjectClass | Should -Be User
@@ -771,6 +772,7 @@ try {
 
             $result.Name | Should -BeExactly TestUserSet1
             $result.Enabled | Should -BeTrue
+            $result.PasswordRequired | Should -BeTrue
             $result.SID | Should -Not -BeNullOrEmpty
             $result.ObjectClass | Should -Be User
         }

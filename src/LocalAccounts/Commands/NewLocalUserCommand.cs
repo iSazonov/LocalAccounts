@@ -201,6 +201,7 @@ namespace LocalAccounts.Commands
                     }
                     else
                     {
+                        userPrincipal.PasswordNotRequired = false;
                         userPrincipal.SetPassword(Password.AsString());
                         userPrincipal.Save();
                     }

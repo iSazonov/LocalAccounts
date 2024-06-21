@@ -226,6 +226,7 @@ namespace LocalAccounts.Commands
 
                             case "Password":
                                 userPrincipal.SetPassword(Password.AsString());
+                                userPrincipal.PasswordNotRequired = false;
                                 break;
 
                             case "PasswordNeverExpires":
