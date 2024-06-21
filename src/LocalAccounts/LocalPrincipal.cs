@@ -2,7 +2,7 @@
 
 using System.Security.Principal;
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// Defines the source of a Principal.

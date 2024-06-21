@@ -2,7 +2,7 @@
 
 using System;
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// Describes a Local User.

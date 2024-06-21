@@ -1,6 +1,6 @@
 // Licensed under the MIT License.
 
-namespace LocalAccounts
+namespace LocalAccounts.Commands
 {
     /// <summary>
     /// Describes a Local Group.

@@ -7,6 +7,7 @@ using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Security.Principal;
 
+using LocalAccounts.Commands;
 using LocalAccounts.Extensions;
 
 namespace LocalAccounts.Helpers;

@@ -3,6 +3,7 @@
 using System;
 using System.Security.Principal;
 
+using LocalAccounts.Commands;
 using LocalAccounts.Helpers;
 using LocalAccounts.Native;
 
