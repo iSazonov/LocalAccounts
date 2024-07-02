@@ -27,4 +27,19 @@ CmdletsToExport = @(
 AliasesToExport= @( "algm", "dlu", "elu", "glg", "glgm", "glu", "nlg", "nlu", "rlg", "rlgm", "rlu", "rnlg", "rnlu", "slg", "slu")
 HelpInfoURI = 'https://go.microsoft.com/fwlink/?LinkId=717973'
 CompatiblePSEditions = @('Core')
+
+    PrivateData      = @{
+        PSData = @{
+            # Tags for PowerShell Gallery site.
+            Tags         = @('account', 'management', 'local', 'Microsoft', 'Windows', 'LocalAccounts', 'PSEdition_Core')
+
+            LicenseUri   = 'https://github.com/iSazonov/LocalAccounts/blob/master/LICENSE.txt'
+
+            ProjectUri   = 'https://github.com/iSazonov/LocalAccounts'
+
+            ReleaseNotes = 'https://github.com/iSazonov/LocalAccounts/blob/master/README.md'
+
+            Prerelease   = 'beta.1'
+        }
+    }
 }
