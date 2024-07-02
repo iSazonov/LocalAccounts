@@ -68,7 +68,7 @@ namespace LocalAccounts.Commands
             };
 
             IEnumerator<Principal> members = groupPrincipal.GetMembers().GetEnumerator();
-            bool hasItem = false;
+            bool hasItem;
             do
             {
                 hasItem = false;
@@ -89,7 +89,6 @@ namespace LocalAccounts.Commands
                         {
                             // Get name as 'Domain\user'
                             Name = principal.Sid.Translate(typeof(NTAccount)).ToString(),
-                            PrincipalSource = Sam.GetPrincipalSource(principal.Sid),
                             SID = principal.Sid,
                             ObjectClass = GetObjectClass(principal),
                         };
@@ -103,7 +102,6 @@ namespace LocalAccounts.Commands
                             localPrincipal = new LocalPrincipal()
                             {
                                 Name = principal.Name,
-                                PrincipalSource = Sam.GetPrincipalSource(principal.Sid),
                                 SID = principal.Sid,
                                 ObjectClass = GetObjectClass(principal),
                             };

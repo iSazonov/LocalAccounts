@@ -164,7 +164,6 @@ internal static class LocalHelpers
             PasswordExpires = passwordExpires,
             PasswordLastSet = lastPasswordSet,
             PasswordRequired = !user.PasswordNotRequired,
-            PrincipalSource = Sam.GetPrincipalSource(user.Sid),
             SID = user.Sid,
             UserMayChangePassword = !user.UserCannotChangePassword,
         };
@@ -237,7 +236,6 @@ internal static class LocalHelpers
                 {
                     Description = group.Description,
                     Name = group.Name,
-                    PrincipalSource = Sam.GetPrincipalSource(group.Sid),
                     SID = group.Sid,
                 };
 
@@ -287,7 +285,6 @@ internal static class LocalHelpers
     {
         Description = group.Description,
         Name = group.Name,
-        PrincipalSource = Sam.GetPrincipalSource(group.Sid),
         SID = group.Sid,
     };
 
@@ -305,7 +302,6 @@ internal static class LocalHelpers
     {
         Description = user.Description,
         Name = user.Name,
-        PrincipalSource = Sam.GetPrincipalSource(user.Sid),
         SID = user.Sid,
     };
 

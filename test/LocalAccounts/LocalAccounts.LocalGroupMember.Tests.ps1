@@ -1,12 +1,5 @@
 # Licensed under the MIT License.
 
-function IsWin10OrHigher
-{
-    $version = [system.environment]::osversion.version
-
-    return ($version.Major -ge 10)
-}
-
 function RemoveTestUsers
 {
     param([string] $basename)
@@ -263,10 +256,6 @@ try {
 
             $result.Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result.SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result.PrincipalSource | Should -Be Local
-            }
             $result.ObjectClass | Should -Be User
         }
     }
@@ -304,17 +293,9 @@ try {
 
             $result[0].Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result[0].SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result[0].PrincipalSource | Should -Be Local
-            }
             $result[0].ObjectClass | Should -Be User
             $result[1].Name.EndsWith("TestUserGet2") | Should -BeTrue
             $result[1].SID | Should -Be $user2sid
-            if (IsWin10OrHigher)
-            {
-                $result[1].PrincipalSource | Should -Be Local
-            }
             $result[1].ObjectClass | Should -Be User
         }
 
@@ -323,17 +304,9 @@ try {
 
             $result[0].Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result[0].SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result[0].PrincipalSource | Should -Be Local
-            }
             $result[0].ObjectClass | Should -Be User
             $result[1].Name.EndsWith("TestUserGet2") | Should -BeTrue
             $result[1].SID | Should -Be $user2sid
-            if (IsWin10OrHigher)
-            {
-                $result[1].PrincipalSource | Should -Be Local
-            }
             $result[1].ObjectClass | Should -Be User
         }
 
@@ -343,17 +316,9 @@ try {
 
             $result[0].Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result[0].SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result[0].PrincipalSource | Should -Be Local
-            }
             $result[0].ObjectClass | Should -Be User
             $result[1].Name.EndsWith("TestUserGet2") | Should -BeTrue
             $result[1].SID | Should -Be $user2sid
-            if (IsWin10OrHigher)
-            {
-                $result[1].PrincipalSource | Should -Be Local
-            }
             $result[1].ObjectClass | Should -Be User
         }
 
@@ -362,17 +327,9 @@ try {
 
             $result[0].Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result[0].SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result[0].PrincipalSource | Should -Be Local
-            }
             $result[0].ObjectClass | Should -Be User
             $result[1].Name.EndsWith("TestUserGet2") | Should -BeTrue
             $result[1].SID | Should -Be $user2sid
-            if (IsWin10OrHigher)
-            {
-                $result[1].PrincipalSource | Should -Be Local
-            }
             $result[1].ObjectClass | Should -Be User
         }
 
@@ -395,10 +352,6 @@ try {
 
             $result.Name.EndsWith("TestUserGet1") | Should -BeTrue
             $result.SID | Should -Be $user1sid
-            if (IsWin10OrHigher)
-            {
-                $result.PrincipalSource | Should -Be Local
-            }
             $result.ObjectClass | Should -Be User
         }
 

@@ -65,6 +65,22 @@ Obviously, there is no binary compatibility with `Microsoft.PowerShell.LocalAcco
 
 This project maintains backward compatibility with its predecessor at the script level, existing Windows PowerShell scripts should work unchanged in most cases. Nevertheless, the project is open to innovations that can be accepted even if backward compatibility cannot be ensured. Maintaining full backward compatibility is not a strict requirement if the changes fix bugs or introduce significant new features.
 
+### `PrincipalSource` property was removed
+
+There are two reasons for this:
+
+- `PrincipalSource` property was based on _non-public_ API `LsaLookupUserAccountType` from `api-ms-win-security-lsalookup-l1-1-2.dll` (the official documentation does not contain a description of this point. In addition, the current version of this dll is listed in the documentation as `api-ms-win-security-lsalookup-l2-1-0.dll`).
+
+- `PrincipalSource` property does not look useful. Microsoft added this property only when Windows 10 was introduced. The reason is unknown. Microsoft's comment in code saids that logic of the `LsaLookupUserAccountType` function is in question and too complex to reproduce on C#. But why do we need this information in a module that should work only with local accounts.
+
+### Possible `PrincipalSource` property replacement
+
+The only possible replacement in future versions could be the `Identifier Authority` value from SID.
+See <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/f992ad60-0fe4-4b87-9fed-beb478836861>
+and <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/c6ce4275-3d90-4890-ab3a-514745e4637e>
+
+The problem here is that the values 10 (`MS Passport`),11 (`Microsoft`), and 12 (`AAD`) are not specified in the official documentation. Of course, this only matters if we want to replace the numeric value with its name.
+
 ## Additional information
 
 Specific of `System.DirectoryServices.AccountManagement` API is that there may be delays due to name recognition on the network, since this API uses NetBIOS names inside. Disabling NetBIOS and LLMNR protocols on the computer could help to fix the problem.
@@ -75,21 +91,4 @@ This project is open for development.
 
 ## Is there any intention to distribute this ported module with PowerShell 7 or to bring it back to the PowerShell repository?
 
- Yes, but here is open questions.
-
- The only API that I could not replace is `LsaLookupUserAccountType`. It is only for `PrincipalSource` property.
- Although the code imports the function from `api-ms-win-security-lsalookup-l1-1-2.dll` the official documentation does not contain a description of this point.
- In addition, the current version of this dll is listed in the documentation as `api-ms-win-security-lsalookup-l2-1-0.dll`.
-
- So `LsaLookupUserAccountType` is rather not a public API. This can be a stopper for moving the code back to the PowerShell repository.
-
- The only possible replacement could be the `Identifier Authority` value from SID.
- See <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/f992ad60-0fe4-4b87-9fed-beb478836861>
- and <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/c6ce4275-3d90-4890-ab3a-514745e4637e>
-
- The problem here is that the values 10 (`MS Passport`),11 (`Microsoft`), and 12 (`AAD`) are not specified in the official documentation. Of course, this only matters if we want to replace the numeric value with its name.
-
- A more general question is why do we need this value (`PrincipalSource`) at all?
- Cmdlets never use it. It is only informational. Microsoft added this property only when Windows 10 was introduced. The reason is unknown. But why do we need this information in a module that should work only with local accounts?
-
- So `Identifier Authority` from SID (exposed as int value since names is not public) looks more useful for future versions.
+It is a question for PowerShell team. (There are no technical obstacles.)

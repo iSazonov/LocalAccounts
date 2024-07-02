@@ -555,7 +555,6 @@ try {
             # TODO $LastLogon
             # TODO $PasswordExpires
             # TODO $PasswordLastSet
-            # TODO $PrincipalSource
 
             $result = New-LocalUser TestUserGet3 -NoPassword -AccountExpires $AccountExpires -Description $Description -Disabled -FullName $FullName -UserMayNotChangePassword
 

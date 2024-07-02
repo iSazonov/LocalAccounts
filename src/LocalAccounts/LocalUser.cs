@@ -95,7 +95,6 @@ namespace LocalAccounts.Commands
           : this(other.Name)
         {
             SID = other.SID;
-            PrincipalSource = other.PrincipalSource;
             ObjectClass = other.ObjectClass;
 
             AccountExpires = other.AccountExpires;

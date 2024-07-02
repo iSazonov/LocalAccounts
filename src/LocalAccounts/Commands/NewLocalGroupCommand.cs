@@ -66,7 +66,6 @@ namespace LocalAccounts.Commands
                     LocalGroup group = new LocalGroup(Name)
                     {
                         Description = Description,
-                        PrincipalSource = PrincipalSource.Local,
                         SID = groupPrincipal.Sid,
 
                     };

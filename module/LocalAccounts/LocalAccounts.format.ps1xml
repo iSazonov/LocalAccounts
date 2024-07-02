@@ -82,7 +82,7 @@
                                 <PropertyName>Name</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
-                                <PropertyName>PrincipalSource</PropertyName>
+                                <PropertyName>SID</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
