@@ -15,7 +15,7 @@
     <Product>PowerShell LocalAccounts</Product>
     <Copyright>(c) I.E.Sazonov. All rights reserved.</Copyright>
 
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <LangVersion>11.0</LangVersion>
 
     <CoreCompileDependsOn>PrepareResources;$(CompileDependsOn)</CoreCompileDependsOn>
@@ -27,7 +27,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <HighEntropyVA>true</HighEntropyVA>
 
-    <PSCoreFileVersion>7.4.0.0</PSCoreFileVersion>
+    <PSCoreFileVersion>1.0.0.0</PSCoreFileVersion>
     <Version>$(PSCoreFileVersion)</Version>
     <InformationalVersion>$(PSCoreFileVersion)</InformationalVersion>
     <ProductVersion>$(PSCoreFileVersion)</ProductVersion>
