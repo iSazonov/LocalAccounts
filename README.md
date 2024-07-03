@@ -4,27 +4,33 @@ PowerShell 7+ module is Windows-only module for local account management.
 
 ## What's it?
 
-It is a port of Windows PowerShell `Microsoft.PowerShell.LocalAccounts` module to .Net (>= 8.0) for using with PowerShell 7.4+ based on [LocalAccounts-MS](https://github.com/iSazonov/LocalAccounts-MS).
+It is a port of Windows PowerShell `Microsoft.PowerShell.LocalAccounts` module to .Net 8.0+ for using with PowerShell 7.4+ based on [LocalAccounts-MS](https://github.com/iSazonov/LocalAccounts-MS).
 
-While `LocalAccounts-MS` is a port of the original `Microsoft.PowerShell.LocalAccounts` module for maintaining maximum backward compatibility and it is frozen, this `LocalAccounts` project is open for development.
+While `LocalAccounts-MS` is a port of the original `Microsoft.PowerShell.LocalAccounts` module for maintaining maximum backward compatibility and it is frozen, the `LocalAccounts` project is open for development.
 
 [Original documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/?view=powershell-5.1)
 
 [Original source code](https://github.com/PowerShell/PowerShell/tree/master/src/Microsoft.PowerShell.LocalAccounts)
 
+## How to install
+
+### Install module from the PowerShell Gallery
+
+```PowerShell
+Install-Module LocalAccounts -Scope AllUsers [-AllowPrerelease]
+```
+
+> **Check** you get right module:
+>
+> start `pwsh`
+>
+> run `Get-LocalUser`
+>
+> `(Get-Module -Name LocalAccounts).Path`
+
 ## Why is the `Microsoft.PowerShell.LocalAccounts` original module not distributed with PowerShell 7?
 
 The original module uses non-public APIs and therefore cannot be part of an open source project.
-
-## How to install
-
- You can compile the code yourself or
-
-- Download ZIP file from release page
-- Unpack it to your PowerShell module folder `C:\Program Files\PowerShell\Modules`
-- start `pwsh`
-- run `Get-LocalUser`
-- Check you get right module `(Get-Module -Name Microsoft.PowerShell.LocalAccounts).Path`
 
 ## Why do we need the ported module?
 
@@ -79,7 +85,7 @@ The only possible replacement in future versions could be the `Identifier Author
 See <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/f992ad60-0fe4-4b87-9fed-beb478836861>
 and <https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/c6ce4275-3d90-4890-ab3a-514745e4637e>
 
-The problem here is that the values 10 (`MS Passport`),11 (`Microsoft`), and 12 (`AAD`) are not specified in the official documentation. Of course, this only matters if we want to replace the numeric value with its name.
+The problem here is that the values 10 (`MS Passport`),11 (`Microsoft`), and 12 (`AzureAD`) are not specified in the official documentation. Of course, this only matters if we want to replace the numeric value with its name.
 
 ## Additional information
 
