@@ -113,15 +113,15 @@ namespace LocalAccounts.Extensions
         /// </returns>
         internal static string? AsString(this SecureString str)
         {
-#if CORECLR
-            IntPtr buffer = SecureStringMarshal.SecureStringToCoTaskMemUnicode(str);
-            string? clear = Marshal.PtrToStringUni(buffer);
-            Marshal.ZeroFreeCoTaskMemUnicode(buffer);
-#else
+            // It was workaround for old .Net Core.
+            // IntPtr buffer = SecureStringMarshal.SecureStringToCoTaskMemUnicode(str);
+            // string? clear = Marshal.PtrToStringUni(buffer);
+            // Marshal.ZeroFreeCoTaskMemUnicode(buffer);
+
             var bstr = Marshal.SecureStringToBSTR(str);
             string? clear = Marshal.PtrToStringAuto(bstr);
             Marshal.ZeroFreeBSTR(bstr);
-#endif
+
             return clear;
         }
     }
