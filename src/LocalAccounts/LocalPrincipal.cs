@@ -5,7 +5,7 @@ using System.Security.Principal;
 namespace LocalAccounts.Commands
 {
     /// <summary>
-    /// Represents a Principal. Serves as a base class for Users and Groups.
+    /// Represents a Principal. Serves as a base class for Local Users and Local Groups.
     /// </summary>
     public class LocalPrincipal
     {
@@ -16,7 +16,7 @@ namespace LocalAccounts.Commands
         public string? Name { get; set; }
 
         /// <summary>
-        /// The Security Identifier that uniquely identifies the Principal/
+        /// The Security Identifier that uniquely identifies the Principal.
         /// </summary>
         public SecurityIdentifier? SID { get; set; }
 
