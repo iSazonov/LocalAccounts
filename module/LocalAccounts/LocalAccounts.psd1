@@ -1,6 +1,6 @@
 @{
 RootModule = 'LocalAccounts'
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '1.0.0'
 GUID = '8a5abd94-39e4-49d8-a711-3332a006f9c4'
 Author = 'I.E.Sazonov'
 Copyright = '© I.E.Sazonov. All rights reserved.'
@@ -39,7 +39,7 @@ CompatiblePSEditions = @('Core')
 
             ReleaseNotes = 'https://github.com/iSazonov/LocalAccounts/blob/master/README.md'
 
-            Prerelease   = 'beta.1'
+            Prerelease   = 'beta2'
         }
     }
 }
